@@ -3,7 +3,7 @@ import json
 import requests
 
 
-def get_top_stories(top_number=10):
+def get_top_stories(top_number=25):
     url = 'https://hacker-news.firebaseio.com/v0/topstories.json'
 
     result = requests.get(url=url)
