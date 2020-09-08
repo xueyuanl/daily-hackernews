@@ -1,8 +1,11 @@
 name: daily hacker news
 
 on:
+  push:
+    branches:
+      - master
   schedule:
-    - cron: '* */3 * * *'
+    - cron: '0 9 * * *'
 
 jobs:
   get_top_stories:

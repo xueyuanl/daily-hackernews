@@ -1,9 +1,10 @@
+import datetime
 import re
 
 from mdutils.mdutils import MdUtils
 
 from hacker_news import get_top_stories, get_topic_item
-from issue import create_issue
+from issue import create_issue, lock_issue
 
 
 def url_parser(url):
@@ -13,6 +14,11 @@ def url_parser(url):
     """
     m = re.search('https?://([A-Za-z_0-9.-]+).*', url)
     return m.group(1)
+
+
+def get_date():
+    current_time = datetime.datetime.now()
+    return '{}-{}-{}'.format(str(current_time.day).zfill(2), str(current_time.month).zfill(2), current_time.year)
 
 
 mdFile = MdUtils(file_name='hacker_news', title='temp')
@@ -34,4 +40,7 @@ for i, v in enumerate(stories):
             str(i + 1), mdFile.new_inline_link(link=link, text=title, bold_italics_code='b'), link))
 
 issue_body = mdFile.file_data_text
-create_issue('daily Hacker News - test', issue_body)
+date = get_date()
+issue_url = create_issue('Daily Hacker News {}'.format(date), issue_body)
+if not lock_issue(issue_url):
+    raise Exception('Failed to lock issue {}, please lock it manually.'.format(issue_url))

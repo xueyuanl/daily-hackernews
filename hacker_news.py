@@ -6,7 +6,7 @@ import requests
 def get_top_stories(top_number=25):
     url = 'https://hacker-news.firebaseio.com/v0/topstories.json'
 
-    result = requests.get(url=url)
+    result = requests.get(url=url, verify=False)
     if result.status_code == 200:
         stories_list = str2list(result.text)[0:top_number]
         return stories_list
@@ -15,7 +15,7 @@ def get_top_stories(top_number=25):
 
 def get_topic_item(id):
     url = 'https://hacker-news.firebaseio.com/v0/item/{}.json?print=pretty'.format(id)
-    result = requests.get(url=url)
+    result = requests.get(url=url, verify=False)
     if result.status_code == 200:
         j_str = result.text
         topic_obj = json.loads(j_str)
