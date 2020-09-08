@@ -5,7 +5,7 @@ on:
     - cron: '*/15 * * * *'
 
 jobs:
-  get top stories:
+  get_top_stories:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
