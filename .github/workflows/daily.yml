@@ -1,0 +1,20 @@
+name: daily hacker news
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+
+jobs:
+  get top stories:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: test python
+        run: python3 --version
+      - name: get started
+        run: echo ${ACCESS_TOKEN}
+        env:
+          ACCESS_TOKEN: ${{ secrets.SECRET }}
