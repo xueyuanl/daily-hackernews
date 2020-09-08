@@ -28,14 +28,3 @@ def str2list(s):
         return []
     temp = s[1:-1]
     return temp.split(',')
-
-
-def main():
-    stories = get_top_stories()
-    for s in stories:
-        item = get_topic_item(s)
-        print(item)
-
-
-if __name__ == '__main__':
-    main()

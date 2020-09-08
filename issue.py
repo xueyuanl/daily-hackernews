@@ -27,11 +27,3 @@ def lock_issue(issue_url):
     if result.status_code == 204:
         return True
     return False
-
-
-def main():
-    lock_issue('1')
-
-
-if __name__ == '__main__':
-    main()
