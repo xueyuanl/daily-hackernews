@@ -43,8 +43,10 @@ def main():
     issue_body = md_file.file_data_text
     date = get_date()
     issue_url = create_issue('Daily Hacker News {}'.format(date), issue_body)
-    if not lock_issue(issue_url):
-        raise Exception('Failed to lock issue {}, please lock it manually.'.format(issue_url))
+
+    # unlock issue for people leave comment
+    # if not lock_issue(issue_url):
+    #     raise Exception('Failed to lock issue {}, please lock it manually.'.format(issue_url))
 
 
 if __name__ == '__main__':
